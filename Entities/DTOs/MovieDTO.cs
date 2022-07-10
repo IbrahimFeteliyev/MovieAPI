@@ -15,8 +15,8 @@ namespace Entities.DTOs
         public string PosterImage { get; set; }
         public string BackgroundImage { get; set; }
         public string CategoryName { get; set; }
-        public List<string> MovieVideos { get; set; }
-        public List<string> MovieNames { get; set; }
+        public List<string> VideoUrl { get; set; }
+        public List<string> VideoName { get; set; }
         public List<string> CastPhotos { get; set; }
         public List<string> CastNames { get; set; }
 

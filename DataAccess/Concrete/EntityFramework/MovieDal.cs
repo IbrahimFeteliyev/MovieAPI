@@ -35,13 +35,13 @@ namespace DataAccess.Concrete.EntityFramework
                 List<string> casts = new();
                 foreach (var item in movieCast)
                 {
-                    videos.Add(item.CastPhoto);
+                    casts.Add(item.CastPhoto);
                 }
 
                 List<string> castNames = new();
                 foreach (var item in movieCast)
                 {
-                    movieNames.Add(item.CastName);
+                    castNames.Add(item.CastName);
                 }
 
                 MovieDTO result = new()
@@ -52,8 +52,8 @@ namespace DataAccess.Concrete.EntityFramework
                     PosterImage = movie.PosterImage,
                     BackgroundImage = movie.BackgroundImage,
                     CategoryName = movie.Category.Name,
-                    MovieVideos = videos,
-                    MovieNames = movieNames,
+                    VideoUrl = videos,
+                    VideoName = movieNames,
                     CastPhotos = casts,
                     CastNames = castNames,
 
@@ -91,13 +91,13 @@ namespace DataAccess.Concrete.EntityFramework
                     List<string> casts = new();
                     foreach (var item in movieCast.Where(x => x.MovieId == movie[i].Id))
                     {
-                        videos.Add(item.CastPhoto); 
+                        casts.Add(item.CastPhoto); 
                     }
 
                     List<string> castNames = new();
                     foreach (var item in movieCast.Where(x => x.MovieId == movie[i].Id))
                     {
-                        movieNames.Add(item.CastName);
+                        castNames.Add(item.CastName);
                     }
 
 
@@ -109,8 +109,8 @@ namespace DataAccess.Concrete.EntityFramework
                         PosterImage = movie[i].PosterImage,
                         BackgroundImage = movie[i].BackgroundImage,
                         CategoryName = movie[i].Category.Name,
-                        MovieVideos = videos,
-                        MovieNames = movieNames,
+                        VideoUrl = videos,
+                        VideoName = movieNames,
                         CastPhotos = casts,
                         CastNames = castNames
 

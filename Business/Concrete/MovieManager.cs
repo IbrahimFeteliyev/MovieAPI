@@ -31,8 +31,7 @@ namespace Business.Concrete
                 Description = movieDTO.Description,
                 PosterImage = movieDTO.PosterImage,
                 BackgroundImage = movieDTO.BackgroundImage,
-                CategoryId = movieDTO.CategoryId,
-
+                CategoryId = movieDTO.CategoryId,       
 
             };
             _movieDal.Add(movie);

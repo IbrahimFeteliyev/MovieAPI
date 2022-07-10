@@ -23,7 +23,6 @@ namespace Business.Concrete
         {
             MovieCast cast = new()
             {
-                MovieId = moviecast.MovieId,
                 CastName = moviecast.CastName,
                 CastPhoto = moviecast.CastPhoto,
             };
