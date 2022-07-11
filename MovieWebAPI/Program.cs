@@ -18,6 +18,9 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IMovieGenreDal, MovieGenreDal>();
+builder.Services.AddScoped<IMovieGenreManager, MovieGenreManager>();
+
 builder.Services.AddScoped<ICategoryDal, CategoryDal>();
 builder.Services.AddScoped<ICategoryManager, CategoryManager>();
 

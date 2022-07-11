@@ -18,6 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<MovieVideo> MovieVideos { get; set; }
         public DbSet<MovieCast> MovieCasts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<MovieGenre> MovieGenres { get; set; }
 
     }
 }

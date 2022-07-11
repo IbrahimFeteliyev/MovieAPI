@@ -17,11 +17,18 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (MovieDbContext context = new())
             {
-                var movie = context.Movies.Include(x => x.Category).Include(x => x.MovieCast).FirstOrDefault(x => x.Id == id); 
+                var movie = context.Movies.Include(x => x.Category).FirstOrDefault(x => x.Id == id); 
                 var movieVideos = context.MovieVideos.Where(x => x.MovieId == id).ToList();
                 var movieCast = context.MovieCasts.Where(x => x.MovieId == id).ToList();
+                var movieGenre = context.MovieGenres.Where(x => x.MovieId == id).ToList();
 
-                List<string> videos = new();
+                List<string> genres = new();
+                foreach (var item in movieGenre)
+                {
+                    genres.Add(item.GenreName);
+                }
+
+                List<string> videos = new();    
                 foreach (var item in movieVideos)
                 {
                     videos.Add(item.VideoUrl);
@@ -56,6 +63,7 @@ namespace DataAccess.Concrete.EntityFramework
                     VideoName = movieNames,
                     CastPhotos = casts,
                     CastNames = castNames,
+                    GenreNames = genres,
 
                 };  
 
@@ -67,15 +75,22 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (MovieDbContext context = new())
             {
-                var movie = context.Movies.Include(x => x.Category).Include(x=>x.MovieCast).Include(x => x.MovieVideo).ToList();
+                var movie = context.Movies.Include(x => x.Category).Include(x=>x.MovieCast).Include(x => x.MovieVideo).Include(x => x.MovieGenre).ToList();
 
                 var movieVideo = context.MovieVideos;
                 var movieCast = context.MovieCasts;
+                var movieGenre = context.MovieGenres;
 
                 List<MovieDTO> result = new();
 
                 for (int i = 0; i < movie.Count; i++)
                 {
+                    List<string> genres = new();
+                    foreach (var item in movieGenre.Where(x => x.MovieId == movie[i].Id))
+                    {
+                        genres.Add(item.GenreName);
+                    }
+
                     List<string> videos = new();
                     foreach (var item in movieVideo.Where(x => x.MovieId == movie[i].Id))
                     {
@@ -112,7 +127,8 @@ namespace DataAccess.Concrete.EntityFramework
                         VideoUrl = videos,
                         VideoName = movieNames,
                         CastPhotos = casts,
-                        CastNames = castNames
+                        CastNames = castNames,
+                        GenreNames = genres,
 
                     };
                     result.Add(movieList);

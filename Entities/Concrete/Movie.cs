@@ -16,6 +16,7 @@ namespace Entities.Concrete
         public string BackgroundImage { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+        public List<MovieGenre> MovieGenre { get; set; }
         public List<MovieVideo> MovieVideo { get; set; }
         public List<MovieCast> MovieCast { get; set; }
 

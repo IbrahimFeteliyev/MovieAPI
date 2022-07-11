@@ -98,6 +98,28 @@ namespace DataAccess.Migrations
                     b.ToTable("MovieCasts");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.MovieGenre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("GenreName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("MovieGenres");
+                });
+
             modelBuilder.Entity("Entities.Concrete.MovieVideo", b =>
                 {
                     b.Property<int>("Id")
@@ -146,6 +168,17 @@ namespace DataAccess.Migrations
                     b.Navigation("Movie");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.MovieGenre", b =>
+                {
+                    b.HasOne("Entities.Concrete.Movie", "Movie")
+                        .WithMany("MovieGenre")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+                });
+
             modelBuilder.Entity("Entities.Concrete.MovieVideo", b =>
                 {
                     b.HasOne("Entities.Concrete.Movie", "Movie")
@@ -160,6 +193,8 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concrete.Movie", b =>
                 {
                     b.Navigation("MovieCast");
+
+                    b.Navigation("MovieGenre");
 
                     b.Navigation("MovieVideo");
                 });

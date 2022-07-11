@@ -66,6 +66,26 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MovieGenres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GenreName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovieGenres", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MovieGenres_Movies_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MovieVideos",
                 columns: table => new
                 {
@@ -92,6 +112,11 @@ namespace DataAccess.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MovieGenres_MovieId",
+                table: "MovieGenres",
+                column: "MovieId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Movies_CategoryId",
                 table: "Movies",
                 column: "CategoryId");
@@ -106,6 +131,9 @@ namespace DataAccess.Migrations
         {
             migrationBuilder.DropTable(
                 name: "MovieCasts");
+
+            migrationBuilder.DropTable(
+                name: "MovieGenres");
 
             migrationBuilder.DropTable(
                 name: "MovieVideos");

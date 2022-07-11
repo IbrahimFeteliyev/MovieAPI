@@ -15,11 +15,13 @@ namespace Business.Concrete
         private readonly IMovieDal _movieDal;
         private readonly IMovieVideoManager _movieVideoManager;
         private readonly IMovieCastManager _movieCastManager;
-        public MovieManager(IMovieDal movieDal, IMovieVideoManager movieVideoManager, IMovieCastManager movieCastManager)
+        private readonly IMovieGenreManager _movieGenreManager;
+        public MovieManager(IMovieDal movieDal, IMovieVideoManager movieVideoManager, IMovieCastManager movieCastManager, IMovieGenreManager movieGenreManager)
         {
             _movieDal = movieDal;
             _movieVideoManager = movieVideoManager;
             _movieCastManager = movieCastManager;
+            _movieGenreManager = movieGenreManager;
         }
 
         public void AddMovie(AddMovieDTO movieDTO)
@@ -29,9 +31,10 @@ namespace Business.Concrete
             {
                 Name = movieDTO.Name,
                 Description = movieDTO.Description,
+                CategoryId = movieDTO.CategoryId,
                 PosterImage = movieDTO.PosterImage,
                 BackgroundImage = movieDTO.BackgroundImage,
-                CategoryId = movieDTO.CategoryId,       
+                    
 
             };
             _movieDal.Add(movie);
@@ -46,6 +49,12 @@ namespace Business.Concrete
             {
                 movieDTO.MovieCast[i].MovieId = movie.Id;
                 _movieCastManager.AddMovieCast(movieDTO.MovieCast[i]);
+            }
+
+            for (int i = 0; i < movieDTO.MovieGenre.Count; i++)
+            {
+                movieDTO.MovieGenre[i].MovieId = movie.Id;
+                _movieGenreManager.AddMovieGenre(movieDTO.MovieGenre[i]);
             }
 
 

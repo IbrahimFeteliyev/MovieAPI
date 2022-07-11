@@ -13,8 +13,8 @@ namespace Entities.DTOs
         public string Description { get; set; }
         public string PosterImage { get; set; } 
         public string BackgroundImage { get; set; }
-        public Category Category { get; set; }
         public int CategoryId { get; set; }
+        public List<MovieGenreDTO> MovieGenre { get; set; }
         public List<MovieVideoDTO> MovieVideo { get; set; }
         public List<MovieCastDTO> MovieCast { get; set; }
     }
