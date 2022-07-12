@@ -31,6 +31,7 @@ namespace DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PosterImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BackgroundImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsSlider = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

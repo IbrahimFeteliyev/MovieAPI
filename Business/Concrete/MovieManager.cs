@@ -34,6 +34,7 @@ namespace Business.Concrete
                 CategoryId = movieDTO.CategoryId,
                 PosterImage = movieDTO.PosterImage,
                 BackgroundImage = movieDTO.BackgroundImage,
+                IsSlider = movieDTO.isSlider,
                     
 
             };

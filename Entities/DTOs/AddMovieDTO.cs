@@ -14,6 +14,7 @@ namespace Entities.DTOs
         public string PosterImage { get; set; } 
         public string BackgroundImage { get; set; }
         public int CategoryId { get; set; }
+        public bool isSlider { get; set; }
         public List<MovieGenreDTO> MovieGenre { get; set; }
         public List<MovieVideoDTO> MovieVideo { get; set; }
         public List<MovieCastDTO> MovieCast { get; set; }

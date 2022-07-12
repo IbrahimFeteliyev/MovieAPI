@@ -124,11 +124,13 @@ namespace DataAccess.Concrete.EntityFramework
                         PosterImage = movie[i].PosterImage,
                         BackgroundImage = movie[i].BackgroundImage,
                         CategoryName = movie[i].Category.Name,
+                        IsSlider = movie[i].IsSlider,
                         VideoUrl = videos,
                         VideoName = movieNames,
                         CastPhotos = casts,
                         CastNames = castNames,
                         GenreNames = genres,
+                        
 
                     };
                     result.Add(movieList);

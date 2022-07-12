@@ -14,6 +14,7 @@ namespace Entities.Concrete
         public string Description { get; set; }
         public string PosterImage { get; set; }
         public string BackgroundImage { get; set; }
+        public bool IsSlider { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public List<MovieGenre> MovieGenre { get; set; }
